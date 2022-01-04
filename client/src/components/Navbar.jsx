@@ -12,12 +12,16 @@ const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
 
   const navBarTitles = ['Market', 'Exchange', 'Tutorials', 'Wallets'];
+
   return (
     <nav className="w-full flex md:justify-center justify-between items-center p-4">
       <div className="md:flex-[0.5] flex-initial justify-center items-center">
         <img src={logo} alt="logo" className="w-32 cursor-pointer" />
       </div>
-      <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-initial">
+      <ul
+        className="text-white md:flex hidden list-none flex-row
+      justify-between items-center flex-initial"
+      >
         {navBarTitles.map((item, index) => (
           <NavbarItem title={item} key={item + index} />
         ))}
@@ -29,13 +33,16 @@ const Navbar = () => {
         <HiMenuAlt4
           fontSize={28}
           className="text-white md:hidden cursor-pointer"
-          onClick={() => setToggleMenu(true)}
+          onClick={() => setToggleMenu(!toggleMenu)}
         />
 
         {toggleMenu && (
-          <ul className="z-10 fixed top-0 -right-2 p-3 w-[60vw] h-screen shadow-2x1 md:hidden list-none flex flex-col justify-start items-end rounded-md blue-glassmorphism text-white anime-slide-in">
+          <ul
+            className="z-10 fixed top-0 -right-2 p-3 w-[60vw] h-screen shadow-2x1 md:hidden list-none flex
+          flex-col justify-start items-end rounded-md blue-glassmorphism text-white animate-slide-in"
+          >
             <li className="text-xl w-full my-2">
-              <AiOutlineClose onClick={() => setToggleMenu(false)} />
+              <AiOutlineClose onClick={() => setToggleMenu(!toggleMenu)} />
             </li>
             {navBarTitles.map((item, index) => (
               <NavbarItem
