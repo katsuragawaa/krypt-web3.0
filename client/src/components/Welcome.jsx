@@ -6,6 +6,17 @@ import { Loader } from './';
 const companyCommonStyles =
   'min-h-[70px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white';
 
+const Input = ({ placeholder, name, type, value, handleChange }) => (
+  <input
+    placeholder={placeholder}
+    type={type}
+    step="0.0001"
+    value={value}
+    onChange={(e) => handleChange(e, name)}
+    className="my-2 w-full rounded-sm p-2 outline-none bg-transparent text-white border-none text-sm white-glassmorphism"
+  />
+);
+
 const Welcome = () => {
   const connectWallet = () => {};
 
@@ -57,14 +68,39 @@ const Welcome = () => {
                 <BsInfoCircle fontSize={17} color="#fff" />
               </div>
               <div>
-                <p className="text-white font-light text-sm">
-                  {/* {shortenAddress(currentAccount)} */}
-                </p>
+                <p className="text-white font-light text-sm">Address</p>
                 <p className="text-white font-semibold text-lg mt-1">
                   Ethereum
                 </p>
               </div>
             </div>
+          </div>
+
+          <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
+            <Input
+              placeholder="Address to"
+              name="addressTo"
+              type="text"
+              handlerChange={() => {}}
+            />
+            <Input
+              placeholder="Amount (ETH)"
+              name="amount"
+              type="number"
+              handleChange={() => {}}
+            />
+            <Input
+              placeholder="Keyword (Gif)"
+              name="keyword"
+              type="text"
+              handleChange={() => {}}
+            />
+            <Input
+              placeholder="Enter Message"
+              name="message"
+              type="text"
+              handleChange={() => {}}
+            />
           </div>
         </div>
       </div>
