@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { SiEthereum } from 'react-icons/si';
 import { BsInfoCircle } from 'react-icons/bs';
+
+import { TransactionContext } from '../context/TransactionContext';
 
 import { Loader } from '.';
 
@@ -19,7 +22,8 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 );
 
 const Welcome = () => {
-  const connectWallet = () => {};
+  const { connectWallet, currentAccount } = useContext(TransactionContext);
+
   const handleSubmit = () => {};
   const handleChange = () => {};
 
@@ -34,7 +38,7 @@ const Welcome = () => {
             Explore the crypto world. Buy and sell cryptocurrencies easily on
             Krypto.
           </p>
-          {true && (
+          {!currentAccount && (
             <button
               type="button"
               onClick={connectWallet}
