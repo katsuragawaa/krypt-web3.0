@@ -7,7 +7,7 @@ export const TransactionContext = React.createContext();
 
 const { ethereum } = window;
 
-const createEthereumContract = () => {
+const getEthereumContract = () => {
   const provider = new ethers.providers.Web3Provider(ethereum);
   const signer = provider.getSigner();
   const transactionsContract = new ethers.Contract(
@@ -40,7 +40,7 @@ export const TransactionProvider = ({ children }) => {
   const getAllTransactions = async () => {
     try {
       if (ethereum) {
-        const transactionsContract = createEthereumContract();
+        const transactionsContract = getEthereumContract();
 
         const availableTransactions =
           await transactionsContract.getAllTransactions();
@@ -57,8 +57,6 @@ export const TransactionProvider = ({ children }) => {
             amount: parseInt(transaction.amount._hex) / 10 ** 18,
           })
         );
-
-        console.log(structuredTransactions);
 
         setTransactions(structuredTransactions);
       } else {
@@ -90,7 +88,7 @@ export const TransactionProvider = ({ children }) => {
   const checkIfTransactionsExists = async () => {
     try {
       if (ethereum) {
-        const transactionsContract = createEthereumContract();
+        const transactionsContract = getEthereumContract();
         const currentTransactionCount =
           await transactionsContract.getTransactionCount();
 
@@ -126,7 +124,7 @@ export const TransactionProvider = ({ children }) => {
     try {
       if (ethereum) {
         const { addressTo, amount, keyword, message } = formData;
-        const transactionsContract = createEthereumContract();
+        const transactionsContract = getEthereumContract();
         const parsedAmount = ethers.utils.parseEther(amount);
 
         await ethereum.request({
